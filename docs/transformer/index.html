@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#071018"><meta name="description" content="黄色跑车变形成双足机器人的八阶段交互式机械演示">
+  <title>机甲变形实验室</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="collection-nav.css">
+</head>
+<body><div class="app-shell">
+  <header class="topbar"><div class="brand"><span class="brand-mark"><i></i></span><div><p class="eyebrow">MECHANICAL TRANSFORMATION STUDY</p><h1>机甲变形实验室</h1></div></div><nav class="collection-nav"><a href="../">← funny</a><a href="about.html">提示词与模型 ↗</a></nav></header>
+  <main>
+    <section class="hero-copy"><div><p class="section-index">交互演示 / 01</p><h2>从公路机器<br><em>重构为战斗形态</em></h2></div><p class="intro">拖动时间轴观察每一块外壳的去向。车头成为胸甲，车门成为肩翼，底盘展开为骨架——全程由同一组零件连续重排。</p></section>
+    <section class="simulator" aria-label="八阶段变形交互演示">
+      <div class="stage-column"><div class="stage-heading"><span>阶段序列</span><b id="stageCount">01 / 08</b></div><nav id="stageNav" class="stage-nav"></nav><div class="principle-card"><span>◎</span><div><b>体积守恒</b><small>所有黄色外壳均可追踪，内部骨架只在外壳解锁后展开。</small></div></div></div>
+      <div class="viewport-card">
+        <div class="viewport-toolbar"><div class="live-tag"><i></i>实时机械剖面</div><div class="view-stats"><span>视角 / 侧前方</span><span>总时长 / <b id="durationLabel">16.0s</b></span></div></div>
+        <div class="viewport"><div class="scan-line"></div><span class="coord x">X / 横向展开</span><span class="coord y">Y / 垂直重构</span>
+          <svg id="machineSvg" viewBox="0 0 920 620" role="img" aria-labelledby="svgTitle svgDesc">
+            <title id="svgTitle">黄色跑车变形为双足机器人的连续机械动画</title><desc id="svgDesc">相同的车轮、车门、车头、车顶与底盘零件在八个阶段中连续移动、旋转并锁定。</desc>
+            <defs>
+              <linearGradient id="yellow" x2="1" y2="1"><stop stop-color="#ffe05a"/><stop offset=".46" stop-color="#f3ac13"/><stop offset="1" stop-color="#874604"/></linearGradient>
+              <linearGradient id="yellowDark" x2="1" y2="1"><stop stop-color="#ca7708"/><stop offset="1" stop-color="#4c2605"/></linearGradient>
+              <linearGradient id="metal" x2="1" y2="1"><stop stop-color="#d8e3e5"/><stop offset=".25" stop-color="#52646b"/><stop offset=".62" stop-color="#17252c"/><stop offset="1" stop-color="#82959b"/></linearGradient>
+              <linearGradient id="glass" x2="1" y2="1"><stop stop-color="#78d9e6" stop-opacity=".74"/><stop offset=".55" stop-color="#163f52" stop-opacity=".92"/><stop offset="1" stop-color="#07131f"/></linearGradient>
+              <radialGradient id="tire"><stop stop-color="#8f9b9e"/><stop offset=".22" stop-color="#1d2b31"/><stop offset=".3" stop-color="#a1aaac"/><stop offset=".4" stop-color="#10181c"/><stop offset="1" stop-color="#010304"/></radialGradient>
+              <filter id="shadow" x="-60%" y="-60%" width="220%" height="220%"><feDropShadow dy="12" stdDeviation="10" flood-opacity=".55"/></filter><filter id="glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+              <pattern id="microgrid" width="22" height="22" patternUnits="userSpaceOnUse"><path d="M22 0H0V22" fill="none" stroke="#55717c" stroke-opacity=".12"/></pattern>
+            </defs>
+            <rect width="920" height="620" fill="url(#microgrid)"/><path d="M70 520H850" class="floor-line"/><ellipse id="groundShadow" cx="460" cy="521" rx="300" ry="24" opacity=".46"/>
+            <g id="mechanism" filter="url(#shadow)">
+              <g class="part internal" data-part="spine"><rect x="-17" y="-92" width="34" height="184" rx="12" fill="url(#metal)" stroke="#9cbbc0" stroke-width="2"/><path d="M-10-67H10M-10-34H10M-10 0H10M-10 34H10M-10 67H10" stroke="#efad20" stroke-width="4"/></g>
+              <g class="part internal" data-part="pelvis"><path d="M-67-22L-42-42H42L67-22 50 35H-50Z" fill="url(#metal)" stroke="#90a9ad" stroke-width="2"/><circle cx="-35" cy="7" r="13" fill="#131e23" stroke="#f2ad19" stroke-width="4"/><circle cx="35" cy="7" r="13" fill="#131e23" stroke="#f2ad19" stroke-width="4"/></g>
+              <g class="part internal" data-part="thighLeft" data-family="后底盘 → 左大腿"><rect x="-57" y="-17" width="114" height="34" rx="12" fill="url(#metal)" stroke="#8ca0a4" stroke-width="2"/><circle cx="-38" r="9" fill="#efad20"/><path d="M-19 0H40" stroke="#d7e3e4" stroke-width="5"/></g>
+              <g class="part internal" data-part="thighRight" data-family="后底盘 → 右大腿"><rect x="-57" y="-17" width="114" height="34" rx="12" fill="url(#metal)" stroke="#8ca0a4" stroke-width="2"/><circle cx="38" r="9" fill="#efad20"/><path d="M-40 0H19" stroke="#d7e3e4" stroke-width="5"/></g>
+              <g class="part internal" data-part="armLeft" data-family="侧梁 → 左臂"><rect x="-58" y="-15" width="116" height="30" rx="10" fill="url(#metal)" stroke="#92a7aa" stroke-width="2"/><circle cx="-40" r="8" fill="#efad20"/></g>
+              <g class="part internal" data-part="armRight" data-family="侧梁 → 右臂"><rect x="-58" y="-15" width="116" height="30" rx="10" fill="url(#metal)" stroke="#92a7aa" stroke-width="2"/><circle cx="40" r="8" fill="#efad20"/></g>
+              <g class="part shell" data-part="forearmLeft" data-family="侧裙 → 左前臂"><path d="M-29-56H22L35-30 28 50 0 65-30 45Z" fill="url(#yellowDark)" stroke="#ffcc35" stroke-width="2"/><path d="M-18-33H18M-17-20H20" stroke="#261500" stroke-width="5"/></g>
+              <g class="part shell" data-part="forearmRight" data-family="侧裙 → 右前臂"><path d="M29-56H-22L-35-30-28 50 0 65 30 45Z" fill="url(#yellowDark)" stroke="#ffcc35" stroke-width="2"/><path d="M18-33H-18M17-20H-20" stroke="#261500" stroke-width="5"/></g>
+              <g class="part internal" data-part="handLeft"><path d="M-24-20H18L28 2 11 30H-16L-30 6Z" fill="url(#metal)" stroke="#b2c3c5" stroke-width="2"/><path d="M-13 22L-20 39M0 24L-2 43M13 20L17 38" stroke="#9fb2b5" stroke-width="6" stroke-linecap="round"/></g>
+              <g class="part internal" data-part="handRight"><path d="M24-20H-18L-28 2-11 30H16L30 6Z" fill="url(#metal)" stroke="#b2c3c5" stroke-width="2"/><path d="M13 22L20 39M0 24L2 43M-13 20L-17 38" stroke="#9fb2b5" stroke-width="6" stroke-linecap="round"/></g>
+              <g class="part shell" data-part="rearShellLeft" data-family="后车身 → 左小腿"><path d="M-72-39H58L74-17 60 35-46 44-73 18Z" fill="url(#yellow)" stroke="#ffd75d" stroke-width="2"/><path d="M-52-21H43L54-10 45 5H-58" fill="#211a0b" opacity=".65"/><path d="M-44 28H40" stroke="#3d2503" stroke-width="5"/></g>
+              <g class="part shell" data-part="rearShellRight" data-family="后车身 → 右小腿"><path d="M-58-39H72L73 18 46 44-60 35-74-17Z" fill="url(#yellow)" stroke="#ffd75d" stroke-width="2"/><path d="M52-21H-43L-54-10-45 5H58" fill="#211a0b" opacity=".65"/><path d="M44 28H-40" stroke="#3d2503" stroke-width="5"/></g>
+              <g class="part shell" data-part="footLeft" data-family="后底护板 → 左脚"><path d="M-57-25H38L61 1 42 29H-58Z" fill="url(#yellowDark)" stroke="#ffc72f" stroke-width="2"/><path d="M-45 17H40" stroke="#151b1e" stroke-width="7"/></g>
+              <g class="part shell" data-part="footRight" data-family="后底护板 → 右脚"><path d="M57-25H-38L-61 1-42 29H58Z" fill="url(#yellowDark)" stroke="#ffc72f" stroke-width="2"/><path d="M45 17H-40" stroke="#151b1e" stroke-width="7"/></g>
+              <g class="part wheel" data-part="rearWheelLeft" data-family="后轮 → 左小腿外侧"><circle r="43" fill="url(#tire)" stroke="#26373c" stroke-width="3"/><circle r="18" fill="#d7dedf" stroke="#42545a" stroke-width="5"/><path d="M0-16V16M-16 0H16M-11-11L11 11M11-11L-11 11" stroke="#172329" stroke-width="4"/></g>
+              <g class="part wheel" data-part="rearWheelRight" data-family="后轮 → 右小腿外侧"><circle r="43" fill="url(#tire)" stroke="#26373c" stroke-width="3"/><circle r="18" fill="#d7dedf" stroke="#42545a" stroke-width="5"/><path d="M0-16V16M-16 0H16M-11-11L11 11M11-11L-11 11" stroke="#172329" stroke-width="4"/></g>
+              <g class="part shell" data-part="roof" data-family="车顶 / 风挡 → 背甲"><path d="M-103 36L-72-32-20-61H53L103 32 80 51H-88Z" fill="url(#glass)" stroke="#ffc32b" stroke-width="7"/><path d="M-15-54L-8 35M58-42L70 34" stroke="#f0b01f" stroke-width="6"/><path d="M-83 40H84" stroke="#121b20" stroke-width="9"/></g>
+              <g class="part shell" data-part="doorLeft" data-family="左车门 → 左肩翼"><path d="M-64-41H53L66-21 55 42H-62L-71 15Z" fill="url(#yellow)" stroke="#ffd75d" stroke-width="2"/><path d="M-43-22H28L42-5H-45Z" fill="url(#glass)"/><path d="M25 14H48" stroke="#5f3904" stroke-width="5"/></g>
+              <g class="part shell" data-part="doorRight" data-family="右车门 → 右肩翼"><path d="M64-41H-53L-66-21-55 42H62L71 15Z" fill="url(#yellow)" stroke="#ffd75d" stroke-width="2"/><path d="M43-22H-28L-42-5H45Z" fill="url(#glass)"/><path d="M-25 14H-48" stroke="#5f3904" stroke-width="5"/></g>
+              <g class="part wheel" data-part="frontWheelLeft" data-family="前轮 → 左肩后方"><circle r="45" fill="url(#tire)"/><circle r="19" fill="#d7dedf" stroke="#42545a" stroke-width="5"/><path d="M0-17V17M-17 0H17M-12-12L12 12M12-12L-12 12" stroke="#172329" stroke-width="4"/></g>
+              <g class="part wheel" data-part="frontWheelRight" data-family="前轮 → 右肩后方"><circle r="45" fill="url(#tire)"/><circle r="19" fill="#d7dedf" stroke="#42545a" stroke-width="5"/><path d="M0-17V17M-17 0H17M-12-12L12 12M12-12L-12 12" stroke="#172329" stroke-width="4"/></g>
+              <g class="part shell" data-part="hood" data-family="引擎盖 → 主胸甲"><path d="M-112-31H91L114-9 101 39H-107L-121 13Z" fill="url(#yellow)" stroke="#ffe175" stroke-width="2"/><path d="M-83-12H65L84 2H-91Z" fill="#ffe36c" opacity=".42"/><path d="M-71 24H76" stroke="#694104" stroke-width="5"/></g>
+              <g class="part shell" data-part="grille" data-family="前格栅 → 胸腔锁板"><path d="M-46-37H42L55-19 49 36H-49L-55-19Z" fill="#111b20" stroke="#f7b41c" stroke-width="5"/><path d="M-34-20H34M-38-6H38M-40 8H40M-35 22H35" stroke="#728387" stroke-width="4"/><circle cx="-30" cy="-47" r="11" fill="#bfffff" class="headlamp"/><circle cx="30" cy="-47" r="11" fill="#bfffff" class="headlamp"/></g>
+              <g class="part internal" data-part="head"><path d="M-36-40L-19-57H20L37-39 32 31 13 49H-14L-35 29Z" fill="url(#metal)" stroke="#aec3c5" stroke-width="2"/><path d="M-30-36L-15-51H15L31-35 21-22H-20Z" fill="url(#yellow)"/><path d="M-24-13L-6-17-9-5-25-3ZM24-13L6-17 9-5 25-3Z" fill="#bfffff" class="robot-eye"/><path d="M-17 12H17L12 31H-12Z" fill="#0c161b"/><path d="M-46-32L-32-44M46-32L32-44" stroke="#f0ae1c" stroke-width="8"/></g>
+            </g>
+            <g id="callouts"><path id="calloutLine"/><circle id="calloutDot" r="4"/><g id="calloutBox"><rect width="190" height="46" rx="4"/><text x="12" y="19" id="calloutTitle"/><text x="12" y="35" id="calloutSub"/></g></g>
+          </svg><div class="phase-stamp"><span id="stampNumber">01</span><b id="stampLabel">WAKE</b></div>
+        </div>
+        <div class="transport"><div class="transport-buttons"><button id="prevBtn" class="icon-btn" aria-label="上一步">‹</button><button id="playBtn" class="play-btn" aria-label="播放"><span class="play-icon">▶</span><span class="pause-icon">Ⅱ</span></button><button id="nextBtn" class="icon-btn" aria-label="下一步">›</button></div><div class="timeline-wrap"><div class="time-row"><span id="timeCurrent">00:00.0</span><span id="timeTotal">00:16.0</span></div><input id="timeline" type="range" min="0" max="7000" value="0" step="1" aria-label="变形进度"><div id="timelineTicks" class="timeline-ticks"></div></div><div class="speed-control"><span>速度</span><button id="speedBtn" aria-expanded="false">1.0×</button><div id="speedMenu" class="speed-menu"><button data-speed="0.5">0.5×</button><button data-speed="1">1.0×</button><button data-speed="1.5">1.5×</button><button data-speed="2">2.0×</button></div></div></div>
+      </div>
+      <aside class="detail-panel" aria-live="polite"><div class="detail-kicker"><span id="detailNumber">01</span><i></i><span id="detailEnglish">SYSTEM WAKE</span></div><h3 id="detailTitle">机械唤醒</h3><p id="detailSummary"></p><div class="changes-block"><h4>本阶段零部件变化</h4><ul id="changeList"></ul></div><div class="active-parts-block"><h4>焦点部件</h4><div id="activeParts" class="active-parts"></div></div><div class="motion-key"><span>◌ 旋转</span><span>▸ 滑动</span><span>◆ 锁定</span></div></aside>
+    </section>
+    <section class="mapping-section"><div class="mapping-copy"><p class="section-index">结构对应 / 02</p><h2>一辆车，<br><em>两种结构语言</em></h2><p>将鼠标移到部件卡片上，可在演示模型中高亮对应结构。汽车外壳没有消失，它们被折叠为机器人外层装甲。</p></div><div id="mappingGrid" class="mapping-grid"></div></section>
+    <footer><span>MECH SHIFT / TYPE R-08</span><p>概念机械演示 · 结构路径经过简化，不代表真实可制造工程方案</p><span>08 PHASES / 22 PARTS</span></footer>
+  </main>
+</div><script src="script.js"></script></body></html>

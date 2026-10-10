@@ -1,0 +1,26 @@
+{
+  "title": "机甲变形实验室",
+  "slug": "transformer",
+  "language": "zh-CN",
+  "model": "GPT 5.6 Sol",
+  "model_source": "user_provided",
+  "model_verified": false,
+  "model_note": "模型名称由用户指定保存，未独立核验后台实际使用的模型。",
+  "prompt_file": "prompt.md",
+  "source_conversation_title": "拆解变形过程",
+  "site_url": "https://linzy874.github.io/funny/transformer/",
+  "repository_url": "https://github.com/LinZY874/funny",
+  "recorded_date": "2026-10-09",
+  "technologies": ["HTML", "CSS", "JavaScript", "SVG"],
+  "runtime_ai": false,
+  "stages": [
+    "机械唤醒",
+    "车体解锁",
+    "双腿形成",
+    "躯干升起",
+    "双臂展开",
+    "胸甲重组",
+    "头部出现",
+    "最终锁定"
+  ]
+}
