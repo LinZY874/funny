@@ -10,5 +10,17 @@
     "model": "GPT 5.6 Sol",
     "date": "2026-10-09",
     "tags": ["机械变形", "交互动画", "8 个阶段"]
+  },
+  {
+    "id": "add",
+    "title": "ADD · 灵感收藏夹",
+    "subtitle": "此刻收藏，下次创造。",
+    "description": "收集值得留下的提示词、风格图片和教程链接，按分类找回积累的内容，为下一次成体系的创作准备素材。支持内容检索、复制与导出调用。",
+    "url": "https://linzy874.github.io/add/",
+    "record": "./add/about.html",
+    "thumbnail": "./assets/add.svg",
+    "model": "GPT 6.1 Sol Ultra",
+    "date": "2026-10-15",
+    "tags": ["提示词", "风格图片", "教程链接"]
   }
 ]

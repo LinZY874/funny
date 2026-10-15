@@ -1,0 +1,17 @@
+{
+  "title": "ADD · 灵感收藏夹",
+  "slug": "add",
+  "language": "zh-CN",
+  "model": "GPT 6.1 Sol Ultra",
+  "model_source": "user_provided",
+  "model_verified": false,
+  "model_note": "模型名称由用户指定保存，未独立核验后台实际使用的模型。",
+  "prompt_file": "prompt.md",
+  "site_url": "https://linzy874.github.io/add/",
+  "repository_url": "https://github.com/LinZY874/add",
+  "collection_record_url": "https://linzy874.github.io/funny/add/about.html",
+  "recorded_date": "2026-10-15",
+  "external_project": true,
+  "record_note": "索引已有外链作品并保存创作记录，本次未新建或重制 ADD。",
+  "modules": ["提示词", "风格化的图片", "教程链接"]
+}
