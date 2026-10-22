@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f4f3e9">
+  <meta name="description" content="一条根据真实制作过程重构的冒险岛 V3 完整提示词，11 项像素素材、用途索引与下载，以及精简创作过程。">
+  <title>V3 提示词与素材 · 冒险岛皮肤 | funny</title>
+  <link rel="stylesheet" href="showcase.css"><link rel="stylesheet" href="resources.css">
+</head>
+<body>
+  <div class="tool-wrap resource-wrap">
+    <nav class="tool-nav"><a href="./" class="home-link">← 冒险岛皮肤<span> / V3 创作资料</span></a><div><a href="#prompt">完整提示词</a><a href="#materials">素材柜</a><a href="#process">制作过程</a></div></nav>
+    <header class="resource-hero">
+      <div><p class="eyebrow">THE MAKING OF A LITTLE ADVENTURE</p><h1>把一次冒险，<br><em>留给下一次创造。</em></h1><p class="hero-description">从多轮真实反馈，整理成一条可复制的 V3 提示词。<br>精灵、纹理和最终留下的设计选择，也一起收好。</p><div class="hero-chips"><span>当前 V3 · 重构简报</span><span>11 项既有素材</span><span>8 条会话 · 72 条真人输入</span></div></div>
+      <div class="resource-emblem" aria-hidden="true"><span>V3</span><img src="skins/v3/assets/snail-blue.png" alt=""><small>keep moving forward.</small></div>
+    </header>
+    <main>
+      <section id="prompt" class="resource-section" aria-labelledby="prompt-title">
+        <div class="section-top"><div><p class="eyebrow">01 / THE COMPLETE PROMPT</p><h2 id="prompt-title">一条提示词，重构 V3。</h2></div><a class="text-link" href="prompt.md" download="冒险岛V3-完整提示词.md">下载 Markdown ↓</a></div>
+        <div class="prompt-layout">
+          <aside class="prompt-context"><span class="context-tag">重构提示词 / 非原始单次输入</span><h3>目标明确，<br>也留下手感。</h3><p>奶油天空与草地绿，角色融入界面，蓝蜗牛点击即时助力。视觉、参数、插件接入和验收约束，合并在同一条完整提示词里。</p><p>配合下方素材与现有源码使用。它依据最终成品整理，不保证模型逐像素复现。</p><a href="https://github.com/LinZY874/funny/tree/main/tools/dsh-maple-skins">查看完整插件基线 ↗</a></aside>
+          <div class="prompt-panel"><div class="prompt-toolbar"><span>V3 / READY TO COPY</span><button id="copyPrompt" disabled>复制完整提示词</button></div><label class="sr-only" for="v3Prompt">冒险岛 V3 完整重构提示词</label><textarea id="v3Prompt" readonly spellcheck="false" aria-describedby="promptStatus">正在加载完整提示词……</textarea><p id="promptStatus" role="status">公开版本已省略个人路径和私人溯源记录。</p><noscript><p class="fallback-note">请<a href="prompt.md">打开完整提示词</a>手动复制。</p></noscript></div>
+        </div>
+        <div class="model-note"><span>创作模型标识</span><div><code>deepseek-v4</code><code>qwen3.8-flash</code><p>来自留存的 Harness 客户端请求／回复记录，并非独立核验的供应商底层模型身份；成品经过多轮人工反馈，不是一次生成。</p></div></div>
+      </section>
+      <section id="materials" class="resource-section" aria-labelledby="materials-title">
+        <div class="section-top"><div><p class="eyebrow">02 / THE MATERIAL CABINET</p><h2 id="materials-title">从素材，到界面里的位置。</h2></div><a class="download" href="downloads/maple-skins-v3-creation-materials.zip" download>V3 资料与素材包 <span>↓</span></a></div>
+        <p class="resource-intro">这里是当前 V3 随附的 11 个 PNG：10 项在用，1 项备用。每一项都保留原始文件、尺寸和用途；透明格纹只是预览底板，不在图片里。</p>
+        <div class="material-controls"><div class="material-filters" role="group" aria-label="筛选素材分类"><button data-category="all" aria-pressed="true">全部</button><button data-category="characters" aria-pressed="false">角色</button><button data-category="items" aria-pressed="false">道具</button><button data-category="decorations" aria-pressed="false">装饰</button><button data-category="textures" aria-pressed="false">纹理</button></div><span id="materialCount" role="status">正在整理素材……</span></div>
+        <div id="materialGrid" class="material-grid" aria-label="V3 素材列表"></div>
+        <p id="materialsStatus" class="fallback-note" role="status"><a href="materials.json">查看机器可读素材索引 ↗</a></p>
+        <div class="rights-note"><b>下载的是资料包，不是安装包。</b><p>ZIP 包含这条提示词、精简创作记录、素材索引，以及 V3 的精灵、纹理、样式、交互代码与预览图。V1／V2 的基线和完整插件请<a href="downloads/dsh-maple-skins-1.0.0.tar.gz" download>另行下载插件包</a>。</p><p>素材来自已有插件，并非本次 AI 新生成。沿用 <a href="https://mxd079.dvg.cn/">mxd079.dvg.cn · 冒险岛 079 小册子</a> 的来源署名；相关素材权利归各自权利人，软件代码许可不等于游戏素材授权。木纹与饰条的独立作者及许可未单独注明，使用前请确认适用范围。</p></div>
+      </section>
+      <section id="process" class="resource-section" aria-labelledby="process-title">
+        <div class="section-top"><div><p class="eyebrow">03 / LESS DECORATION, MORE FEELING</p><h2 id="process-title">最后留下的，不只是像素。</h2></div><a class="text-link" href="creation.md" download="冒险岛皮肤-创作过程.md">下载创作记录 ↓</a></div>
+        <div class="process-grid"><article><span>2026.08.21</span><h3>不止换色与贴图</h3><p>从 079 素材和品牌文案开始。几张小怪图片还不够，需要整个界面的熟悉氛围。</p></article><article><span>2026.08.25 — 26</span><h3>做深，也做减法</h3><p>让角色与界面动作联系起来；撤掉影响阅读的纹理与装饰，保留更干净的原版用色。</p></article><article><span>2026.08.27</span><h3>点击，就是助力</h3><p>反复修正回退、停顿和重复放大。最终只向前、不上下飘，连点即时续上力。</p></article></div>
+        <blockquote>“吉祥物和道具，不要呆板地展示在界面上，要有机地和界面融为一体，比如：有互动，有动态，有交互，有功能性。”<cite>— 制作过程中的真人反馈节选</cite></blockquote>
+        <p class="process-note">公开资料只保留精简过程与少量关键反馈；未上传完整聊天、个人路径、原始会话标识或私人来源索引。历史编号不再沿用，当前只用 V1、V2、V3。</p>
+        <div class="resource-links"><a href="./">体验当前 V3 ↗</a><a href="about.html">工具与安装说明 ↗</a><a href="metadata.json">版本和来源索引 ↗</a><a href="https://github.com/LinZY874/funny/blob/main/docs/maple-skins/creation.md">阅读精简创作过程 ↗</a></div>
+      </section>
+    </main>
+    <footer><a href="../">funny / 工具收藏</a><span>让枫叶飘进每一次对话</span><a href="./">返回互动预览 ↗</a></footer>
+  </div>
+  <script src="resources.js"></script>
+</body>
+</html>

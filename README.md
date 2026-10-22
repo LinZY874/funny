@@ -22,9 +22,9 @@
 | --- | --- | --- | --- |
 | 机甲变形实验室 | [查看记录](https://linzy874.github.io/funny/transformer/about.html) | [查看提示词](docs/transformer/prompt.md) | [GPT 5.6 Sol](docs/transformer/metadata.json) |
 | ADD · 灵感收藏夹 | [查看记录](https://linzy874.github.io/funny/add/about.html) | [查看提示词](docs/add/prompt.md) | [GPT 6.1 Sol Ultra](docs/add/metadata.json) |
-| DSH · 冒险岛皮肤 | [查看说明](https://linzy874.github.io/funny/maple-skins/about.html) | [查看脱敏收录请求](docs/maple-skins/prompt.md) | [未提供模型](docs/maple-skins/metadata.json) |
+| DSH · 冒险岛皮肤 | [查看创作资料](https://linzy874.github.io/funny/maple-skins/resources.html) | [完整 V3 重构提示词](docs/maple-skins/prompt.md) | [deepseek-v4 / qwen3.8-flash（客户端记录）](docs/maple-skins/metadata.json) |
 
-前两件作品的模型名称由用户指定保存，未作为已核验的后台模型信息。冒险岛插件的模型及原始创作提示词未提供，仅保留本次脱敏后的收录请求。ADD 的记录用于索引已有作品，不表示本次新建或重制了 ADD。
+前两件作品的模型名称由用户指定保存，未作为已核验的后台模型信息。冒险岛皮肤的模型标识来自留存的 Harness 客户端请求／回复记录，未独立核验供应商底层模型身份；V3 提示词根据 8 条留存会话、72 条真人输入和当前源码重构，不是原始单次输入，也不保证逐像素复现。ADD 的记录用于索引已有作品，不表示本次新建或重制了 ADD。
 
 ## 目录结构
 
@@ -49,10 +49,14 @@ funny/
     └── maple-skins/
         ├── index.html            # 默认 V3 的皮肤互动预览
         ├── about.html            # 工具介绍与安装说明
-        ├── prompt.md             # 脱敏后的收录请求
+        ├── prompt.md             # 一条完整的 V3 重构提示词
+        ├── resources.html        # 提示词复制、11项素材浏览和创作过程
+        ├── creation.md           # 精简公开创作过程
+        ├── materials.json        # 可调用的素材清单、尺寸和用途
         ├── metadata.json         # 版本与来源记录
         └── downloads/
-            └── dsh-maple-skins-1.0.0.tar.gz
+            ├── dsh-maple-skins-1.0.0.tar.gz
+            └── maple-skins-v3-creation-materials.zip
 ```
 
 GitHub Pages 使用 `main` 分支的 `docs/` 目录发布，网站地址为 <https://linzy874.github.io/funny/>。
@@ -60,6 +64,10 @@ GitHub Pages 使用 `main` 分支的 `docs/` 目录发布，网站地址为 <htt
 ## 冒险岛皮肤插件
 
 [打开 V3 预览](https://linzy874.github.io/funny/maple-skins/) · [下载插件 v1.0.0](https://linzy874.github.io/funny/maple-skins/downloads/dsh-maple-skins-1.0.0.tar.gz) · [查看插件源码](https://github.com/LinZY874/funny/tree/main/tools/dsh-maple-skins)
+
+[复制 V3 提示词与浏览素材](https://linzy874.github.io/funny/maple-skins/resources.html) · [下载 V3 资料与素材包](https://linzy874.github.io/funny/maple-skins/downloads/maple-skins-v3-creation-materials.zip) · [精简制作过程](docs/maple-skins/creation.md)
+
+资料包含完整重构提示词、11 项 PNG 索引、V3 样式与交互代码及原包示意图，不是独立安装包。公开稿已去掉私人路径、会话标识和完整聊天；素材既有署名与使用边界保留。红蜗牛为当前未引用的备用素材。
 
 `dsh-maple-skins` 是 DeepSeek Harness Web GUI 的皮肤插件，包含原皮肤切换入口与三个冒险岛版本。本工具页优先展示“冒险岛 V3（原版用色 · 蜗牛冲刺）”：奶油色与草地色界面、蘑菇和绿水灵装饰，以及可以点击助力的蓝蜗牛。网页预览使用演示内容，实际 DSH 换肤需要安装插件。
 
