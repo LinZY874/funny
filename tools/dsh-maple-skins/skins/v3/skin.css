@@ -1,0 +1,223 @@
+/* ============================================================
+   冒险岛 V3 — L1 token 层
+   奶油天空 / 草地绿 / 金币。浅色 = 蜗牛花园白天；深色 = 夜园。
+   079 原版用色（更亮的奶油 + 草地绿点缀），
+   蓝蜗牛可点击冲刺（见 patches.css 第 9 节 + hooks.mjs）。
+   ============================================================ */
+
+:root {
+  color: #3d2c18;
+
+  /* 皮肤自有色板 */
+  --maple-wood: #8b5a2b;
+  --maple-wood-deep: #6b4423;
+  --maple-wood-soft: #a97142;
+  --maple-cream: #fdf8ec;
+  --maple-cream-2: #f8efdb;
+  --maple-gold: #d4a017;
+  --maple-gold-bright: #f5c542;
+  --maple-leaf: #e8842c;
+  /* 079 蜗牛花园草地绿 */
+  --maple-grass: #79b347;
+  --maple-grass-deep: #4f8a33;
+  --maple-shadow-warm: 0 2px 10px #6b442326, 0 12px 32px #6b44231f;
+
+  /* 背景层：亮奶油天空底（无底图，由 patches 叠渐变 + 草地地平线） */
+  --dsw-alias-bg-base: #f7f1de;
+  --dsw-alias-bg-layer-1: #fdf8ece9;
+  --dsw-alias-bg-layer-2: #f8efdbf2;
+  --dsw-alias-bg-layer-3: #f2ecd2f2;
+  --dsw-alias-bg-overlay: #fffcf2f6;
+  --dsw-alias-bg-mask-1: #6b442317;
+  --dsw-alias-bg-mask-2: #6b442321;
+  --dsw-alias-bg-mask-3: #6b442330;
+  --dsw-alias-bg-skeleton: #f2ecd2;
+
+  /* 木色描边 */
+  --dsw-alias-border-l1: #8b5a2b30;
+  --dsw-alias-border-l2: #8b5a2b52;
+  --dsw-alias-border-l2-darkmode-thin: #8b5a2b40;
+  --dsw-alias-border-l3: #a97142cc;
+  --dsw-alias-border-l4: #6b4423;
+  --dsw-alias-border-inverted: #6b4423cc;
+  --dsw-alias-border-inverted2: #4a3420b3;
+
+  /* 品牌 = 金币 */
+  --dsw-alias-brand-primary: #d4a017;
+  --dsw-alias-brand-primary-invert: #fff8e6;
+  --dsw-alias-brand-text: #4a3420;
+
+  /* 按钮 = 金币立体 */
+  --dsw-alias-button-primary-fill: #f5c542;
+  --dsw-alias-button-primary-hover: #ffd95e;
+  --dsw-alias-button-primary-dimmed: #d4a017cc;
+  --dsw-alias-button-contrast-fill: #6b4423;
+  --dsw-alias-button-elevated-fill: #fffdf6e8;
+  --dsw-alias-button-floating-fill: #fffaf0f0;
+  --dsw-alias-button-floating-hover: #f3e5c3;
+  --dsw-alias-button-info-fill: #e8973a;
+  --dsw-alias-button-info-hover: #f2a94f;
+  --dsw-alias-button-tool-bar-fill: #fffaf0cc;
+  --dsw-alias-button-tool-bar-hover: #f3e5c3;
+
+  /* 交互态 = 金币微光 */
+  --dsw-alias-interactive-bg-hover: #d4a0171f;
+  --dsw-alias-interactive-bg-hover-solid: #f3e8cd;
+  --dsw-alias-interactive-bg-hover-accent: #e8842c26;
+  --dsw-alias-interactive-bg-hover-danger: #c0392b1f;
+  --dsw-alias-interactive-bg-active: #d4a0174d;
+
+  /* 文字 = 深棕 */
+  --dsw-alias-label-primary: #3d2c18;
+  --dsw-alias-label-primary-bluish: #4a3a22;
+  --dsw-alias-label-primary-dimmed: #6b533499;
+  --dsw-alias-label-secondary: #6b5334;
+  --dsw-alias-label-tertiary: #8a744f;
+  --dsw-alias-label-caption: #a08a63;
+  --dsw-alias-label-dimmed: #8a744f99;
+
+  /* 状态色：暖木体系内 */
+  --dsw-alias-state-business-primary: #d4a017;
+  --dsw-alias-state-business-tertiary: #f7e9c8;
+  --dsw-alias-state-error-primary: #c0392b;
+  --dsw-alias-state-error-secondary: #c0392b1a;
+  --dsw-alias-state-success-primary: #6a994e;
+  --dsw-alias-state-success-secondary: #6a994e1a;
+  --dsw-alias-state-success-tertiary: #eaf2df;
+  --dsw-alias-state-warn-label: #8a5a10;
+  --dsw-alias-state-warn-primary: #d4a017;
+  --dsw-alias-state-warn-secondary: #d4a0171a;
+  --dsw-alias-state-warn-tertiary: #f7e9c8;
+
+  /* 侧栏 = 奶油木格 */
+  --dsw-specific-bubble: #fffaf0f0;
+  --dsw-specific-bubble-highlight: #fff3d6;
+  --dsw-specific-input-major: #fffdf7e6;
+  --dsw-specific-menu: #fffaf0ee;
+  --dsw-specific-selector: #f3e8cd;
+  --dsw-specific-sidebar-fill: #f7edd8e0;
+  --dsw-specific-sidebar-nav-item-active: #f3e3b8;
+  --dsw-specific-sidebar-nav-item-hover: #f5ecd3c4;
+  --dsw-specific-tip: #fffaf0f6;
+
+  /* 阴影 = 暖调 */
+  --dsw-shadow-lv1: 0 1px 4px #6b442321;
+  --dsw-shadow-lv2: var(--maple-shadow-warm);
+  --dsw-shadow-lv3: 0 18px 50px #6b442340;
+  --dsw-shadow-lv1-blur: 4px;
+
+  /* 滚动条 = 木色 */
+  --dsw-alias-scrollbar-bg-l1: #8b5a2b4d;
+  --dsw-alias-scrollbar-bg-l2: #8b5a2b30;
+  --dsw-alias-scrollbar-hover-l1: #8b5a2b80;
+  --dsw-alias-scrollbar-hover-l2: #8b5a2b66;
+
+  /* markdown = 深木色代码板 + 枫叶橙标签 */
+  --dsw-alias-markdown-code-block: #2e2415f5;
+  --dsw-alias-markdown-code-block-banner: #3a2f1f;
+  --dsw-alias-markdown-code-segment-selected: #f5c542;
+  --dsw-alias-markdown-code-segment-unselected: #8a744f80;
+  --dsw-alias-markdown-inline-code: #f3e3b8;
+  --dsw-alias-markdown-citation: #8a744f;
+  --dsw-alias-markdown-tag: #e8842c;
+  --dsw-alias-markdown-placeholder: #a08a63;
+}
+
+/* ============ 深色 = 夜园（深绿棕夜底） ============ */
+body[data-ds-dark-theme] {
+  color: #f5ead0;
+
+  --maple-wood: #7a5228;
+  --maple-wood-deep: #553a1e;
+  --maple-wood-soft: #8b6a3a;
+  --maple-grass: #5d8f3d;
+  --maple-grass-deep: #3e6a28;
+  --maple-shadow-warm: 0 2px 10px #00000040, 0 12px 32px #00000038;
+
+  --dsw-alias-bg-base: #252315;
+  --dsw-alias-bg-layer-1: #3a3220e6;
+  --dsw-alias-bg-layer-2: #453b24f0;
+  --dsw-alias-bg-layer-3: #4a4127f2;
+  --dsw-alias-bg-overlay: #292413f6;
+  --dsw-alias-bg-mask-1: #00000021;
+  --dsw-alias-bg-mask-2: #00000030;
+  --dsw-alias-bg-mask-3: #00000040;
+  --dsw-alias-bg-skeleton: #453b24;
+
+  --dsw-alias-border-l1: #d4a0172e;
+  --dsw-alias-border-l2: #d4a01742;
+  --dsw-alias-border-l2-darkmode-thin: #d4a01738;
+  --dsw-alias-border-l3: #c89b5acc;
+  --dsw-alias-border-l4: #8b5a2b;
+  --dsw-alias-border-inverted: #8b5a2bcc;
+  --dsw-alias-border-inverted2: #6b4423b3;
+
+  --dsw-alias-brand-primary: #f0c040;
+  --dsw-alias-brand-primary-invert: #2a2115;
+  --dsw-alias-brand-text: #f5ead0;
+
+  --dsw-alias-button-primary-fill: #d4a017;
+  --dsw-alias-button-primary-hover: #e8b52a;
+  --dsw-alias-button-primary-dimmed: #d4a01799;
+  --dsw-alias-button-contrast-fill: #f5ead0;
+  --dsw-alias-button-elevated-fill: #3f3521e6;
+  --dsw-alias-button-floating-fill: #453a26f0;
+  --dsw-alias-button-floating-hover: #55462d;
+  --dsw-alias-button-info-fill: #c87f2a;
+  --dsw-alias-button-info-hover: #dd9040;
+  --dsw-alias-button-tool-bar-fill: #3a2f1fcc;
+  --dsw-alias-button-tool-bar-hover: #4f4229;
+
+  --dsw-alias-interactive-bg-hover: #f0c0401f;
+  --dsw-alias-interactive-bg-hover-solid: #4f4229;
+  --dsw-alias-interactive-bg-hover-accent: #e8842c33;
+  --dsw-alias-interactive-bg-active: #f0c0404d;
+
+  --dsw-alias-label-primary: #f5ead0;
+  --dsw-alias-label-primary-bluish: #ecd9ae;
+  --dsw-alias-label-primary-dimmed: #c9b28a99;
+  --dsw-alias-label-secondary: #c9b28a;
+  --dsw-alias-label-tertiary: #a68f66;
+  --dsw-alias-label-caption: #8a7452;
+  --dsw-alias-label-dimmed: #a68f6699;
+
+  --dsw-alias-state-business-primary: #f0c040;
+  --dsw-alias-state-business-tertiary: #4f4229;
+  --dsw-alias-state-error-primary: #e74c3c;
+  --dsw-alias-state-error-secondary: #e74c3c21;
+  --dsw-alias-state-success-primary: #8bc34a;
+  --dsw-alias-state-success-secondary: #8bc34a21;
+  --dsw-alias-state-success-tertiary: #3a3320;
+  --dsw-alias-state-warn-label: #f0c040;
+  --dsw-alias-state-warn-primary: #d4a017;
+  --dsw-alias-state-warn-secondary: #d4a01721;
+  --dsw-alias-state-warn-tertiary: #4f4229;
+
+  --dsw-specific-bubble: #3f3521e6;
+  --dsw-specific-bubble-highlight: #4f4229;
+  --dsw-specific-input-major: #332a1ae6;
+  --dsw-specific-menu: #3a2f1fee;
+  --dsw-specific-selector: #4f4229;
+  --dsw-specific-sidebar-fill: #2e2415e0;
+  --dsw-specific-sidebar-nav-item-active: #4f4229;
+  --dsw-specific-sidebar-nav-item-hover: #453a26c4;
+  --dsw-specific-tip: #2a2115f6;
+
+  --dsw-shadow-lv1: 0 1px 4px #00000033;
+  --dsw-shadow-lv3: 0 18px 50px #00000059;
+
+  --dsw-alias-scrollbar-bg-l1: #8b5a2b66;
+  --dsw-alias-scrollbar-bg-l2: #8b5a2b40;
+  --dsw-alias-scrollbar-hover-l1: #a9714299;
+  --dsw-alias-scrollbar-hover-l2: #8b5a2b73;
+
+  /* markdown = 夜色代码板 */
+  --dsw-alias-markdown-code-block: #171310f5;
+  --dsw-alias-markdown-code-block-banner: #221c15;
+  --dsw-alias-markdown-code-segment-selected: #f0c040;
+  --dsw-alias-markdown-code-segment-unselected: #8a745280;
+  --dsw-alias-markdown-inline-code: #4f4229;
+  --dsw-alias-markdown-citation: #8a7452;
+  --dsw-alias-markdown-tag: #e8842c;
+  --dsw-alias-markdown-placeholder: #8a7452;
+}

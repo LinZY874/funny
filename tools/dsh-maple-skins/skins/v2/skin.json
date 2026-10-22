@@ -1,0 +1,50 @@
+{
+  "$schema": "https://schemas.linxin666.org/dsh-skin/v2.json",
+  "skinManifestVersion": 2,
+  "id": "v2",
+  "name": "冒险岛 V2（蘑菇村景）",
+  "nameEn": "MapleStory V2",
+  "author": "MapleStory 079 玩家",
+  "tagline": "蘑菇村全景、流动云朵、弹跳小怪与黏液助手",
+  "description": "冒险岛 V2：小蘑菇村高分辨率渲染图背景，浅色飘云 / 深色星月双场景；渐变木纹输入框与金币纹理按钮；AI 回复气泡由绿水灵助手坐镇（呼吸挤压动效）；右下角三只小怪排队弹跳；标题栏冒险岛铭牌；消息入场、链接枫叶橙、选区金币黄等全站细节。",
+  "tags": ["maplestory", "retro", "game", "wood", "deep"],
+  "accent": "#d4a017",
+  "order": 2,
+  "version": "2.0.0",
+  "attribution": "游戏素材镜像自 mxd079.dvg.cn（冒险岛 079 社区数据库）",
+  "preview": {
+    "light": "preview/light.png",
+    "dark": "preview/dark.png"
+  },
+  "requires": {
+    "contracts": [
+      {
+        "apiVersion": "x-org.linxin666.skin-center/v1alpha1",
+        "kind": "SkinHooks",
+        "optional": true
+      }
+    ]
+  },
+  "contributes": {
+    "stylesheet": "skin.css",
+    "patches": "patches.css",
+    "backgroundMedia": {
+      "light": {
+        "type": "image",
+        "src": "assets/bg-mushroom-village.webp",
+        "scrim": "linear-gradient(180deg, rgba(255, 250, 235, 0.82) 0%, rgba(252, 244, 222, 0.74) 55%, rgba(247, 236, 208, 0.80) 100%)"
+      },
+      "dark": {
+        "type": "image",
+        "src": "assets/bg-mushroom-village.webp",
+        "scrim": "linear-gradient(180deg, rgba(12, 10, 16, 0.94) 0%, rgba(22, 17, 26, 0.90) 55%, rgba(14, 11, 17, 0.93) 100%)"
+      }
+    }
+  },
+  "facets": {
+    "client": {
+      "entry": "hooks.mjs",
+      "apiVersion": "x-org.linxin666.skin-center/v1alpha1"
+    }
+  }
+}

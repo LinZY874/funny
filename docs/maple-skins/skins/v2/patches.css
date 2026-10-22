@@ -1,0 +1,514 @@
+/* ============================================================
+   冒险岛 V2 — L3 patch 层
+   渐变木纹框 / 黏液助手 / 弹跳小怪 / 流云星月 / 标题栏铭牌
+   ============================================================ */
+
+/* ---------- 1. 侧栏品牌标：绿蘑菇（悬停投掷自旋） ---------- */
+button[class*="brand"] {
+  position: relative;
+}
+button[class*="brand"] svg {
+  display: none !important;
+}
+button[class*="brand"]:before {
+  content: "";
+  display: inline-block;
+  flex: none;
+  width: 24px;
+  height: 22px;
+  margin-right: 2px;
+  background: url(assets/logo-green-mushroom.png) center / contain no-repeat;
+  transform-origin: 50% 50%;
+}
+button[class*="brand"]:hover:before {
+  animation: maple-dart-spin 900ms cubic-bezier(0.3, 0.1, 0.3, 1);
+}
+@keyframes maple-dart-spin {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  60% {
+    transform: rotate(360deg) scale(1.18);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+/* ---------- 2. hero 空态：绿蘑菇 logo（34px + 悬停投掷自旋） ---------- */
+[data-slot="conversation.hero.brand.mark"] svg,
+[data-slot="conversation.hero.brand.mark"] img {
+  display: none !important;
+}
+[data-slot="conversation.hero.brand.mark"]:before {
+  content: "";
+  display: inline-block;
+  flex: none;
+  width: 34px;
+  height: 34px;
+  vertical-align: middle;
+  background: url(assets/logo-green-mushroom.png) center / contain no-repeat;
+  transform-origin: 50% 50%;
+}
+[data-slot="conversation.hero.brand.mark"]:hover:before {
+  animation: maple-dart-spin 900ms cubic-bezier(0.3, 0.1, 0.3, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  button[class*="brand"]:hover:before,
+  [data-slot="conversation.hero.brand.mark"]:hover:before {
+    animation: none;
+  }
+}
+
+/* ---------- 3. 金币纹理按钮 ---------- */
+button {
+  transition: box-shadow 120ms ease, filter 120ms ease;
+}
+button:not(:disabled) {
+  box-shadow: inset 0 1px 0 #ffffff2e;
+}
+button[class*="primary"]:not(:disabled) {
+  background: linear-gradient(180deg, #ffd95e 0%, #f5c542 45%, #e0a812 100%) !important;
+  border: 1px solid #b8860b !important;
+  box-shadow:
+    inset 0 1px 0 #fff8,
+    inset 0 -2px 0 #7a522840,
+    0 2px 6px #6b442333 !important;
+}
+button[class*="primary"]:not(:disabled):hover {
+  filter: brightness(1.06);
+  box-shadow:
+    inset 0 1px 0 #fff3,
+    inset 0 -2px 0 #7a522840,
+    0 3px 10px #6b442340 !important;
+}
+body[data-ds-dark-theme] button[class*="primary"]:not(:disabled) {
+  background: linear-gradient(180deg, #e8b52a 0%, #d4a017 50%, #a87b0e 100%) !important;
+  border-color: #8a6a10 !important;
+  box-shadow:
+    inset 0 1px 0 #ffffff40,
+    inset 0 -2px 0 #00000040,
+    0 2px 8px #0000004d !important;
+}
+
+/* ---------- 4. 输入卡渐变木纹框（圆角 + 四角木钉） ---------- */
+[data-composer-card] {
+  position: relative;
+  border: 6px solid transparent !important;
+  border-radius: 16px !important;
+  background:
+    linear-gradient(#fffaf0f0, #fffaf0f0) padding-box,
+    linear-gradient(155deg, #a97142 0%, #7a5228 35%, #8b5a2b 65%, #5f3d1f 100%) border-box !important;
+  box-shadow:
+    inset 0 1px 0 #ffffff73,
+    0 8px 24px #6b442338 !important;
+}
+body[data-ds-dark-theme] [data-composer-card] {
+  background:
+    linear-gradient(#332a1ae6, #332a1ae6) padding-box,
+    linear-gradient(155deg, #6b4a26 0%, #4a3420 45%, #553a1e 100%) border-box !important;
+  box-shadow:
+    inset 0 1px 0 #ffffff14,
+    0 8px 24px #00000059 !important;
+}
+/* 四角木钉 */
+[data-composer-card]:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 9px 9px, #ffe9b3 0 1.5px, #4a3420 2px 3.2px, transparent 4px),
+    radial-gradient(circle at calc(100% - 9px) 9px, #ffe9b3 0 1.5px, #4a3420 2px 3.2px, transparent 4px),
+    radial-gradient(circle at 9px calc(100% - 9px), #ffe9b3 0 1.5px, #4a3420 2px 3.2px, transparent 4px),
+    radial-gradient(circle at calc(100% - 9px) calc(100% - 9px), #ffe9b3 0 1.5px, #4a3420 2px 3.2px, transparent 4px);
+}
+/* 输入区：无内层框，textarea 融入木纹卡 */
+[data-composer-card] textarea {
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+/* focus：木框内缘亮起金币光 */
+[data-composer-card]:has(textarea:focus) {
+  box-shadow:
+    inset 0 0 0 2px #d4a01766,
+    inset 0 1px 0 #ffffff73,
+    0 8px 24px #6b442338 !important;
+}
+body[data-ds-dark-theme] [data-composer-card]:has(textarea:focus) {
+  box-shadow:
+    inset 0 0 0 2px #f0c04066,
+    inset 0 1px 0 #ffffff14,
+    0 8px 24px #00000059 !important;
+}
+
+/* ---------- 5. 消息气泡 + 绿水灵助手 ---------- */
+[data-chat-flow-kind="assistant-step"] > * > * > * > div[class*="markdown"] {
+  position: relative;
+  padding: 14px 18px !important;
+  background: #fffaf0f2 !important;
+  border: 2px solid #a971428c !important;
+  border-radius: 16px !important;
+  box-shadow:
+    inset 0 1px 0 #ffffff8c,
+    0 3px 12px #6b442324 !important;
+}
+/* 绿水灵坐在气泡左上角，呼吸挤压 */
+[data-chat-flow-kind="assistant-step"] > * > * > * > div[class*="markdown"]:before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: 14px;
+  width: 30px;
+  height: 22px;
+  background: url(assets/green-slime.png) center / contain no-repeat;
+  transform-origin: 50% 100%;
+  animation: maple-slime-breathe 2.2s ease-in-out infinite;
+  filter: drop-shadow(0 2px 2px #6b442340);
+}
+@keyframes maple-slime-breathe {
+  0%,
+  100% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.05, 0.93);
+  }
+}
+body[data-ds-dark-theme] [data-chat-flow-kind="assistant-step"] > * > * > * > div[class*="markdown"] {
+  background: #3f3521e8 !important;
+  border-color: #8b6a3a80 !important;
+  box-shadow:
+    inset 0 1px 0 #ffffff10,
+    0 3px 12px #00000040 !important;
+}
+[class*="userRow"] [class*="bubble"] {
+  background: #fff3d6ee !important;
+  border: 2px solid #a9714266 !important;
+  border-radius: 16px !important;
+  box-shadow:
+    inset 0 1px 0 #ffffff80,
+    0 2px 8px #6b44231f !important;
+}
+body[data-ds-dark-theme] [class*="userRow"] [class*="bubble"] {
+  background: #4f4229dd !important;
+  border-color: #8b6a3a59 !important;
+  box-shadow: 0 2px 8px #00000033 !important;
+}
+
+/* ---------- 6. 消息入场 ---------- */
+[data-chat-flow] {
+  animation: maple-msg-in 260ms ease-out;
+}
+@keyframes maple-msg-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-chat-flow] {
+    animation: none;
+  }
+}
+
+/* ---------- 7. 吉祥物排队 · 弹跳 ---------- */
+.maple-mascot-line {
+  position: fixed;
+  right: 28px;
+  bottom: 22px;
+  z-index: 900;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  pointer-events: none;
+}
+.maple-mascot-line img {
+  display: block;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 3px 4px #6b442340);
+  transform-origin: 50% 100%;
+}
+/* 花蘑菇：弹跳（保留） */
+.maple-mascot-line img:nth-child(1) {
+  animation: maple-mascot-bob 1.9s ease-in-out infinite;
+}
+/* 绿水灵：黏液挤压-拉伸（蹲伏-弹起-落地压扁） */
+.maple-mascot-line img:nth-child(2) {
+  animation: maple-slime-jump 1.6s ease-in-out infinite;
+}
+/* 蓝蜗牛：爬行（前爬-停顿-微晃，缓慢） */
+.maple-mascot-line img:nth-child(3) {
+  transform-origin: 50% 50%;
+  animation: maple-snail-crawl 3.4s ease-in-out infinite;
+}
+@keyframes maple-slime-jump {
+  0%,
+  100% {
+    transform: scale(1, 1) translateY(0);
+  }
+  20% {
+    transform: scale(1.18, 0.78) translateY(0);
+  }
+  45% {
+    transform: scale(0.82, 1.22) translateY(-9px);
+  }
+  62% {
+    transform: scale(1.25, 0.7) translateY(0);
+  }
+  80% {
+    transform: scale(0.92, 1.08) translateY(-3px);
+  }
+}
+@keyframes maple-snail-crawl {
+  0%,
+  100% {
+    transform: translateX(0) rotate(0deg);
+  }
+  30% {
+    transform: translateX(2.5px) rotate(2deg);
+  }
+  55% {
+    transform: translateX(5px) rotate(0deg);
+  }
+  80% {
+    transform: translateX(2.5px) rotate(-2deg);
+  }
+}
+@keyframes maple-mascot-bob {
+  0%,
+  100% {
+    transform: translateY(0) scale(1, 1);
+  }
+  30% {
+    transform: translateY(-5px) scale(0.97, 1.03);
+  }
+  55% {
+    transform: translateY(0) scale(1.05, 0.92);
+  }
+  70% {
+    transform: translateY(-2px) scale(0.99, 1.01);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .maple-mascot-line img {
+    animation: none;
+  }
+}
+
+/* ---------- 8. 流云（浅色） ---------- */
+.maple-cloud {
+  position: fixed;
+  left: -280px;
+  pointer-events: none;
+  filter: blur(6px);
+  animation: maple-cloud-drift linear infinite;
+  will-change: transform;
+}
+.maple-cloud i {
+  position: absolute;
+  display: block;
+  background: #ffffffd9;
+  border-radius: 999px;
+}
+@keyframes maple-cloud-drift {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(165vw);
+  }
+}
+body[data-ds-dark-theme] .maple-cloud i {
+  background: #8890b338;
+}
+
+/* ---------- 9. 星月（深色） ---------- */
+.maple-stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 600ms ease;
+  background-image:
+    radial-gradient(circle at 12% 16%, #ffffffb3 0 1.2px, transparent 2px),
+    radial-gradient(circle at 24% 42%, #ffffff80 0 1px, transparent 1.8px),
+    radial-gradient(circle at 37% 12%, #ffffffcc 0 1.4px, transparent 2.2px),
+    radial-gradient(circle at 48% 30%, #ffffff73 0 1px, transparent 1.8px),
+    radial-gradient(circle at 58% 8%, #ffffffb3 0 1.2px, transparent 2px),
+    radial-gradient(circle at 66% 24%, #ffffff80 0 1px, transparent 1.8px),
+    radial-gradient(circle at 74% 14%, #ffffffcc 0 1.4px, transparent 2.2px),
+    radial-gradient(circle at 83% 34%, #ffffff73 0 1px, transparent 1.8px),
+    radial-gradient(circle at 91% 10%, #ffffffb3 0 1.2px, transparent 2px),
+    radial-gradient(circle at 17% 62%, #ffffff66 0 1px, transparent 1.8px),
+    radial-gradient(circle at 88% 58%, #ffffff66 0 1px, transparent 1.8px),
+    radial-gradient(circle at 42% 48%, #ffffff59 0 1px, transparent 1.8px),
+    radial-gradient(circle at 6% 38%, #ffffff80 0 1px, transparent 1.8px),
+    radial-gradient(circle at 95% 26%, #ffffff80 0 1px, transparent 1.8px);
+}
+body[data-ds-dark-theme] .maple-stars {
+  opacity: 0.7;
+}
+.maple-moon {
+  position: fixed;
+  top: 7vh;
+  right: 11vw;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 35%, #fff8e6 0 55%, #f0d9a0 100%);
+  box-shadow: 0 0 30px 8px #f0d9a04d;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 600ms ease;
+}
+body[data-ds-dark-theme] .maple-moon {
+  opacity: 0.85;
+}
+
+/* ---------- 10. 飘落枫叶 ---------- */
+.maple-leaf {
+  position: fixed;
+  top: -6vh;
+  opacity: 0;
+  pointer-events: none;
+  animation: maple-leaf-fall linear infinite;
+  will-change: transform, opacity;
+  user-select: none;
+}
+@keyframes maple-leaf-fall {
+  0% {
+    transform: translate3d(0, -6vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate3d(4vw, 52vh, 0) rotate(200deg);
+    opacity: 0.45;
+  }
+  100% {
+    transform: translate3d(-3vw, 108vh, 0) rotate(380deg);
+    opacity: 0.15;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .maple-leaf {
+    display: none;
+  }
+}
+
+/* ---------- 11. 标题栏铭牌（hooks 注入 .maple-titlebar-plaque） ---------- */
+[class*="titlebar"] {
+  position: relative;
+  background: linear-gradient(180deg, #f7edd8f2 0%, #f1e4c8f2 100%) !important;
+  border-bottom: 2px solid #8b5a2b4d;
+}
+body[data-ds-dark-theme] [class*="titlebar"] {
+  background: linear-gradient(180deg, #2a2115f2 0%, #221a10f2 100%) !important;
+  border-bottom-color: #d4a01733;
+}
+.maple-titlebar-plaque {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #6b4423;
+  text-shadow: 0 1px 0 #ffffff8c;
+  pointer-events: none;
+  white-space: nowrap;
+}
+body[data-ds-dark-theme] .maple-titlebar-plaque {
+  color: #f0c040;
+  text-shadow: 0 1px 2px #00000099;
+}
+
+/* ---------- 12. 侧栏深度（蘑菇村木屋风） ---------- */
+/* 侧栏本体：细木纹 + 粗木右框（双色） */
+[data-slot="sidebar"] {
+  border-right: 3px solid #6b4423 !important;
+  box-shadow: inset -1px 0 0 #a9714280;
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 7px,
+    #8b5a2b08 7px,
+    #8b5a2b08 8px
+  );
+}
+body[data-ds-dark-theme] [data-slot="sidebar"] {
+  border-right-color: #4a3420 !important;
+  box-shadow: inset -1px 0 0 #8b5a2b59;
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 7px,
+    #00000026 7px,
+    #00000026 8px
+  );
+}
+/* 分组标题：木色下划线 */
+[data-slot="sidebar"] [class*="sectionHeader"] {
+  border-bottom: 1px solid #8b5a2b26;
+  letter-spacing: 1px;
+}
+/* 会话行 = 木牌：圆角 + hover 金光 + 选中金币木牌 */
+[data-slot="sidebar.workspaces"] [role="treeitem"] {
+  border-radius: 10px;
+  transition: background 120ms ease, box-shadow 120ms ease;
+}
+[data-slot="sidebar.workspaces"] [role="treeitem"]:hover {
+  background: #d4a01721 !important;
+}
+[data-slot="sidebar.workspaces"] [role="treeitem"][aria-selected="true"] {
+  background: linear-gradient(90deg, #f3e3b8 0%, #fff3d6 100%) !important;
+  box-shadow: inset 3px 0 0 #d4a017;
+}
+body[data-ds-dark-theme] [data-slot="sidebar.workspaces"] [role="treeitem"]:hover {
+  background: #f0c0401f !important;
+}
+body[data-ds-dark-theme] [data-slot="sidebar.workspaces"] [role="treeitem"][aria-selected="true"] {
+  background: linear-gradient(90deg, #4f4229 0%, #3f3521 100%) !important;
+  box-shadow: inset 3px 0 0 #f0c040;
+}
+/* 搜索框：木框 */
+[data-slot="sidebar"] [class*="searchInput"] {
+  border: 2px solid #8b5a2b52 !important;
+  border-radius: 10px !important;
+  background: #fffdf7e6 !important;
+}
+[data-slot="sidebar"] [class*="searchInput"]:focus,
+[data-slot="sidebar"] [class*="searchInput"]:focus-visible {
+  border-color: #d4a017 !important;
+  outline: none !important;
+}
+body[data-ds-dark-theme] [data-slot="sidebar"] [class*="searchInput"] {
+  border-color: #8b5a2b80 !important;
+  background: #221a10e6 !important;
+}
+/* 底部设置行：hover 金币微光 */
+[data-slot="sidebar.settings"]:hover {
+  background: #d4a01714;
+  border-radius: 10px;
+}
+body[data-ds-dark-theme] [data-slot="sidebar.settings"]:hover {
+  background: #f0c04014;
+}
+
+/* ---------- 13. 链接与选区 ---------- */
+a {
+  color: #d2691e;
+}
+body[data-ds-dark-theme] a {
+  color: #f2a94f;
+}
+::selection {
+  background: #f5c54299;
+  color: #3d2c18;
+}

@@ -1,0 +1,33 @@
+const params=new URLSearchParams(location.search);
+const version=['v1','v2','v3'].includes(params.get('version'))?params.get('version'):'v3';
+let theme=params.get('theme')==='dark'?'dark':'light';
+const skinBase=new URL(`skins/${version}/`,location.href);
+document.documentElement.dataset.dshSkin=version;
+document.getElementById('demoVersion').textContent=`${version.toUpperCase()} · 展示模式`;
+document.title=`冒险岛 ${version.toUpperCase()} · 皮肤预览`;
+const cleanups=[],themeListeners=new Set();
+let manifest=null,boostCount=0;
+function notifyParent(type,extra={}){if(parent!==window)parent.postMessage({type,...extra},location.origin)}
+function renderBackground(){const host=document.getElementById('backgroundMedia');host.replaceChildren();const media=manifest?.contributes?.backgroundMedia;const variant=theme==='dark'?media?.dark??media?.light:media?.light??media?.dark;if(!variant)return;if(variant.type==='image'){const image=document.createElement('img');image.src=new URL(variant.src,skinBase);image.alt='';host.append(image)}if(variant.scrim){const scrim=document.createElement('div');scrim.style.background=variant.scrim;host.append(scrim)}}
+function setTheme(value){theme=value==='dark'?'dark':'light';document.body.toggleAttribute('data-ds-dark-theme',theme==='dark');themeListeners.forEach(listener=>listener(theme));renderBackground()}
+function setScene(value){const hero=value==='hero';document.getElementById('heroScene').hidden=!hero;document.getElementById('chatScene').hidden=hero;document.querySelectorAll('[data-demo-session]').forEach((button,index)=>button.setAttribute('aria-selected',String(!hero&&index===0)))}
+function addMessage(kind,text){const list=document.getElementById('messageList');if(kind==='user'){const row=document.createElement('div');row.className='userRow';row.dataset.chatFlow='user';const bubble=document.createElement('div');bubble.className='bubble';bubble.textContent=text;row.append(bubble);list.append(row)}else{const row=document.createElement('div');row.dataset.chatFlowKind='assistant-step';row.dataset.chatFlow='assistant';const label=document.createElement('p');label.className='assistant-label';label.textContent='MapleStory · 示例回复';const a=document.createElement('div'),b=document.createElement('div'),c=document.createElement('div'),markdown=document.createElement('div');markdown.className='markdown';const paragraph=document.createElement('p');paragraph.textContent=text;markdown.append(paragraph);c.append(markdown);b.append(c);a.append(b);row.append(label,a);list.append(row)}document.getElementById('chatScene').scrollTop=document.getElementById('chatScene').scrollHeight;}
+function seedConversation(){document.getElementById('messageList').replaceChildren();addMessage('user','给工作台换一个冒险岛的心情吧。');addMessage('assistant','欢迎来到你的冒险工作台。悬停回复里的绿水灵，或点一点草边的蓝蜗牛，让熟悉的小怪陪你开始今天的创作。');const pills=document.createElement('div');pills.className='message-pills';for(const label of ['奶油天空','木色边框','金币按钮']){const pill=document.createElement('span');pill.textContent=label;pills.append(pill)}document.querySelector('.markdown').append(pills)}
+function submitSample(text){const value=text.trim();if(!value)return;setScene('conversation');addMessage('user',value);addMessage('assistant','这是一条用于观察皮肤效果的示例回复。绿水灵、消息气泡和金钱镖都已就位，继续把你的灵感变成下一次冒险吧。')}
+document.getElementById('demoComposer').addEventListener('submit',event=>{event.preventDefault();const input=document.getElementById('demoInput');submitSample(input.value);input.value=''});
+document.getElementById('demoInput').addEventListener('keydown',event=>{if(event.key==='Enter'&&!event.shiftKey&&!event.isComposing){event.preventDefault();document.getElementById('demoComposer').requestSubmit()}});
+document.getElementById('newSession').addEventListener('click',()=>{setScene('hero');document.getElementById('demoInput').value=''});
+document.getElementById('brandButton').addEventListener('click',()=>setScene('hero'));
+document.querySelectorAll('[data-suggestion]').forEach(button=>button.addEventListener('click',()=>submitSample(button.dataset.suggestion)));
+document.querySelectorAll('[data-demo-session]').forEach(button=>button.addEventListener('click',()=>{seedConversation();setScene('conversation');document.querySelector('.userRow .bubble').textContent=button.dataset.demoSession;document.querySelectorAll('[data-demo-session]').forEach(item=>item.setAttribute('aria-selected',String(item===button)))}));
+document.querySelector('.workspaceItem').addEventListener('click',event=>{const button=event.currentTarget;const open=button.getAttribute('aria-expanded')!=='true';button.setAttribute('aria-expanded',String(open));button.textContent=(open?'▾':'▸')+' 灵感工作区';document.querySelectorAll('.sessionItem').forEach(item=>item.hidden=!open)});
+document.getElementById('sampleSearch').addEventListener('input',event=>{const keyword=event.target.value.trim();document.querySelectorAll('.sessionItem').forEach(button=>button.hidden=!button.textContent.includes(keyword))});
+window.addEventListener('message',event=>{if(event.origin!==location.origin||event.source!==parent)return;const data=event.data;if(data?.type==='preview-theme')setTheme(data.value);if(data?.type==='preview-scene')setScene(data.value);if(data?.type==='preview-boost')document.querySelector('.maple-snail')?.click()});
+seedConversation();setTheme(theme);setScene(params.get('scene')||'conversation');
+async function loadSkin(){
+ document.getElementById('skinSheet').href=new URL('skin.css',skinBase);
+ document.getElementById('patchSheet').href=new URL('patches.css',skinBase);
+ try{const response=await fetch(new URL('skin.json',skinBase));if(!response.ok)throw new Error('Skin manifest unavailable');manifest=await response.json();renderBackground();const {default:factory}=await import(new URL('hooks.mjs',skinBase));factory().apply({skinId:version,scopeAttr:version,assetBase:skinBase.href.replace(/\/$/,''),theme:{get:()=>theme,subscribe:listener=>{themeListeners.add(listener);return()=>themeListeners.delete(listener)}},onCleanup:fn=>cleanups.push(fn)});const snail=document.querySelector('.maple-snail');if(snail){snail.removeAttribute('aria-hidden');snail.setAttribute('role','button');snail.tabIndex=0;snail.setAttribute('aria-label','蓝蜗牛：点击冲刺');snail.title='点一下，向前冲';snail.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();snail.click()}});snail.addEventListener('click',()=>notifyParent('preview-boost-count',{count:++boostCount}))}}catch(error){console.error('Skin preview could not initialize:',error);notifyParent('preview-error')}
+}
+window.addEventListener('pagehide',()=>cleanups.forEach(cleanup=>cleanup()),{once:true});
+loadSkin();

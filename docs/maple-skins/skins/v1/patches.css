@@ -1,0 +1,222 @@
+/* ============================================================
+   冒险岛 V1 — L3 patch 层（自由选择器，高敏感）
+   锚点均为官方稳定 data-* / slot 属性，图片走皮肤目录相对路径。
+   ============================================================ */
+
+/* ---------- 1. 侧栏品牌标：官方鲸鱼标 → 金钱镖 ---------- */
+button[class*="brand"] {
+  position: relative;
+}
+button[class*="brand"] svg {
+  display: none !important;
+}
+button[class*="brand"]:before {
+  content: "";
+  display: inline-block;
+  flex: none;
+  width: 22px;
+  height: 24px;
+  margin-right: 2px;
+  background: url(assets/money-dart.png) center / contain no-repeat;
+  transform-origin: 50% 50%;
+}
+/* 悬停：与 hero 同款投掷自旋 */
+button[class*="brand"]:hover:before {
+  animation: maple-dart-spin 900ms cubic-bezier(0.3, 0.1, 0.3, 1);
+}
+
+/* ---------- 2. 新会话空态 hero：鲸鱼 logo → 金钱镖（34px + 摇晃动效） ---------- */
+[data-slot="conversation.hero.brand.mark"] svg,
+[data-slot="conversation.hero.brand.mark"] img {
+  display: none !important;
+}
+[data-slot="conversation.hero.brand.mark"]:before {
+  content: "";
+  display: inline-block;
+  flex: none;
+  width: 34px;
+  height: 34px;
+  vertical-align: middle;
+  background: url(assets/money-dart.png) center / contain no-repeat;
+  transform-origin: 50% 50%;
+}
+/* 悬停：投掷自旋——整镖 360° 一圈 + 轻微放大，落回原位 */
+[data-slot="conversation.hero.brand.mark"]:hover:before {
+  animation: maple-dart-spin 900ms cubic-bezier(0.3, 0.1, 0.3, 1);
+}
+@keyframes maple-dart-spin {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  60% {
+    transform: rotate(360deg) scale(1.18);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-slot="conversation.hero.brand.mark"]:hover:before {
+    animation: none;
+  }
+}
+
+/* ---------- 3. 金币立体按钮 ---------- */
+button {
+  transition: box-shadow 120ms ease, filter 120ms ease;
+}
+button:not(:disabled) {
+  box-shadow: inset 0 1px 0 #ffffff2e;
+}
+button[class*="primary"]:not(:disabled) {
+  border-color: #b8860baa !important;
+  box-shadow:
+    inset 0 1px 0 #fff0,
+    inset 0 -2px 0 #7a522826,
+    0 2px 6px #6b442333 !important;
+}
+button[class*="primary"]:not(:disabled):hover {
+  filter: brightness(1.06);
+  box-shadow:
+    inset 0 1px 0 #fff3,
+    inset 0 -2px 0 #7a522826,
+    0 3px 10px #6b442340 !important;
+}
+body[data-ds-dark-theme] button[class*="primary"]:not(:disabled) {
+  box-shadow:
+    inset 0 1px 0 #ffffff40,
+    inset 0 -2px 0 #00000040,
+    0 2px 8px #0000004d !important;
+}
+
+/* ---------- 4. 输入卡木框 ---------- */
+[data-composer-card] {
+  border: 3px solid #8b5a2b !important;
+  border-radius: 14px !important;
+  box-shadow:
+    inset 0 1px 0 #ffffff73,
+    inset 0 -3px 6px #6b442326,
+    0 8px 24px #6b442338 !important;
+}
+body[data-ds-dark-theme] [data-composer-card] {
+  border-color: #6b4a26 !important;
+  box-shadow:
+    inset 0 1px 0 #ffffff14,
+    inset 0 -3px 6px #00000040,
+    0 8px 24px #00000059 !important;
+}
+/* 输入区：去掉内层框，textarea 完全融入外层木框 */
+[data-composer-card] textarea {
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+/* focus 反馈落在外层木框上：边框变金币色 */
+[data-composer-card]:has(textarea:focus) {
+  border-color: #d4a017 !important;
+}
+body[data-ds-dark-theme] [data-composer-card]:has(textarea:focus) {
+  border-color: #f0c040 !important;
+}
+
+/* ---------- 5. 消息气泡木框 ---------- */
+[data-chat-flow-kind="assistant-step"] > * > * > * > div[class*="markdown"] {
+  padding: 14px 18px !important;
+  background: #fffaf0f2 !important;
+  border: 2px solid #a971428c !important;
+  border-radius: 16px !important;
+  box-shadow:
+    inset 0 1px 0 #ffffff8c,
+    0 3px 12px #6b442324 !important;
+}
+body[data-ds-dark-theme] [data-chat-flow-kind="assistant-step"] > * > * > * > div[class*="markdown"] {
+  background: #3f3521e8 !important;
+  border-color: #8b6a3a80 !important;
+  box-shadow:
+    inset 0 1px 0 #ffffff10,
+    0 3px 12px #00000040 !important;
+}
+[class*="userRow"] [class*="bubble"] {
+  background: #fff3d6ee !important;
+  border: 2px solid #a9714266 !important;
+  border-radius: 16px !important;
+  box-shadow:
+    inset 0 1px 0 #ffffff80,
+    0 2px 8px #6b44231f !important;
+}
+body[data-ds-dark-theme] [class*="userRow"] [class*="bubble"] {
+  background: #4f4229dd !important;
+  border-color: #8b6a3a59 !important;
+  box-shadow: 0 2px 8px #00000033 !important;
+}
+
+/* ---------- 6. 侧栏与顶栏木色镶边（克制） ---------- */
+[data-slot="sidebar"] {
+  border-right: 2px solid #8b5a2b3d;
+}
+[data-slot="session-header"] {
+  border-bottom-color: #8b5a2b30;
+}
+body[data-ds-dark-theme] [data-slot="sidebar"] {
+  border-right-color: #d4a01726;
+}
+
+/* ---------- 7. 标题栏（titlebar）暖木 ---------- */
+[class*="titlebar"] {
+  background: #f7edd8e6 !important;
+  border-bottom: 1px solid #8b5a2b33;
+}
+body[data-ds-dark-theme] [class*="titlebar"] {
+  background: #2a2115e6 !important;
+  border-bottom-color: #d4a01721;
+}
+
+/* ---------- 8. 飘落枫叶（hooks 注入 .maple-leaf 元素） ---------- */
+.maple-leaf {
+  position: fixed;
+  top: -6vh;
+  opacity: 0;
+  pointer-events: none;
+  animation: maple-leaf-fall linear infinite;
+  will-change: transform, opacity;
+  user-select: none;
+}
+@keyframes maple-leaf-fall {
+  0% {
+    transform: translate3d(0, -6vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate3d(4vw, 52vh, 0) rotate(200deg);
+    opacity: 0.45;
+  }
+  100% {
+    transform: translate3d(-3vw, 108vh, 0) rotate(380deg);
+    opacity: 0.15;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .maple-leaf {
+    display: none;
+  }
+}
+
+/* ---------- 9. 吉祥物排队（hooks 注入 .maple-mascot-line） ---------- */
+.maple-mascot-line {
+  position: fixed;
+  right: 28px;
+  bottom: 22px;
+  z-index: 900;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  pointer-events: none;
+}
+.maple-mascot-line img {
+  display: block;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 3px 4px #6b442340);
+}

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://schemas.linxin666.org/dsh-skin/v2.json",
+  "skinManifestVersion": 2,
+  "id": "v1",
+  "name": "冒险岛 V1（蜗牛花园）",
+  "nameEn": "MapleStory V1",
+  "author": "MapleStory 079 玩家",
+  "tagline": "蘑菇村草地、金币按钮与怪物吉祥物排队",
+  "description": "以冒险岛 0.79 版本为主题的复古皮肤：真实 079 渲染地图（蜗牛花园）作背景，暖木 + 奶油 + 金币的界面配色，木框输入卡与消息气泡，金钱镖品牌标与空态 logo，右下角花蘑菇 / 绿水灵 / 蓝蜗牛三小怪排队，飘落的枫叶氛围，浏览器标题与空态文案一并换成冒险岛版本。",
+  "tags": ["maplestory", "retro", "game", "wood", "maple-leaf"],
+  "accent": "#d4a017",
+  "order": 1,
+  "version": "1.0.0",
+  "attribution": "游戏素材镜像自 mxd079.dvg.cn（冒险岛 079 社区数据库）",
+  "preview": {
+    "light": "preview/light.png",
+    "dark": "preview/dark.png"
+  },
+  "requires": {
+    "contracts": [
+      {
+        "apiVersion": "x-org.linxin666.skin-center/v1alpha1",
+        "kind": "SkinHooks",
+        "optional": true
+      }
+    ]
+  },
+  "contributes": {
+    "stylesheet": "skin.css",
+    "patches": "patches.css",
+    "backgroundMedia": {
+      "light": {
+        "type": "image",
+        "src": "assets/bg-snail-garden.webp",
+        "scrim": "linear-gradient(180deg, rgba(255, 250, 235, 0.86) 0%, rgba(252, 244, 222, 0.80) 55%, rgba(247, 236, 208, 0.84) 100%)"
+      },
+      "dark": {
+        "type": "image",
+        "src": "assets/bg-snail-garden.webp",
+        "scrim": "linear-gradient(180deg, rgba(16, 12, 7, 0.93) 0%, rgba(26, 19, 11, 0.89) 55%, rgba(18, 13, 8, 0.92) 100%)"
+      }
+    }
+  },
+  "facets": {
+    "client": {
+      "entry": "hooks.mjs",
+      "apiVersion": "x-org.linxin666.skin-center/v1alpha1"
+    }
+  }
+}

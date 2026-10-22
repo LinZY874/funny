@@ -22,5 +22,22 @@
     "model": "GPT 6.1 Sol Ultra",
     "date": "2026-10-15",
     "tags": ["提示词", "风格图片", "教程链接"]
+  },
+  {
+    "id": "maple-skins",
+    "title": "DSH · 冒险岛皮肤",
+    "subtitle": "让每一次对话，都有一点冒险的心情。",
+    "description": "给 DeepSeek Harness 换上熟悉的奶油天空、草地绿与像素小怪。三款皮肤统一为 V1、V2、V3，默认体验 V3 的蓝蜗牛点击冲刺，并提供插件下载与安装说明。",
+    "url": "./maple-skins/",
+    "record": "./maple-skins/about.html",
+    "thumbnail": "./assets/maple-v3.jpg",
+    "model": null,
+    "metaLabel": "插件版本",
+    "metaValue": "1.0.0 · 默认 V3",
+    "actionLabel": "预览与下载",
+    "recordLabel": "工具说明 ↗",
+    "visualLabel": "MAPLE SKINS / V3",
+    "date": "2026-10-21",
+    "tags": ["DSH 插件", "默认 V3", "像素互动"]
   }
 ]

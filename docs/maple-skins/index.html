@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f4f3e9"><meta name="description" content="dsh-maple-skins：给 DeepSeek Harness 换上冒险岛皮肤。V1、V2、V3 三款，默认展示 V3，可切换昼夜、体验蓝蜗牛冲刺并下载插件。"><title>冒险岛皮肤 · dsh-maple-skins | funny</title><link rel="stylesheet" href="showcase.css"></head>
+<body>
+  <div class="tool-wrap">
+    <nav class="tool-nav"><a href="../" class="home-link">← funny<span> / 工具 003</span></a><div><a href="#install">安装方法</a><a href="about.html">收录说明 ↗</a></div></nav>
+    <header class="tool-hero"><div><p class="eyebrow">DEEPSEEK HARNESS × MAPLESTORY</p><h1>让每一次对话，<br>都有一点<em>冒险的心情。</em></h1><p class="hero-description">奶油天空、木色边框，还有陪你工作的绿水灵。<br>给 DeepSeek Harness 换上一套会动的冒险岛皮肤。</p><div class="hero-chips"><span>dsh-maple-skins · 1.0.0</span><span class="recommended">默认展示 V3</span></div></div><div class="pixel-cast" aria-hidden="true"><span class="cast-orbit"></span><img class="cast-mushroom" src="skins/v3/assets/mush-green.png" alt=""><img class="cast-slime" src="skins/v3/assets/slime-green.png" alt=""><img class="cast-snail" src="skins/v3/assets/snail-blue.png" alt=""><span class="cast-note">a little nostalgia,<br>a little adventure.</span></div></header>
+    <main>
+      <section class="preview-section" aria-labelledby="preview-title">
+        <div class="section-top"><div><p class="eyebrow">PLAY WITH THE THEME</p><h2 id="preview-title">先逛一逛，再装进工作台。</h2></div><a class="download" href="downloads/dsh-maple-skins-1.0.0.tar.gz" download>下载插件 <span>↓</span></a></div>
+        <div class="preview-controls"><div class="version-tabs" role="group" aria-label="皮肤版本"><button data-version="v1" aria-pressed="false">V1 <small>蜗牛花园</small></button><button data-version="v2" aria-pressed="false">V2 <small>蘑菇村景</small></button><button data-version="v3" aria-pressed="true">V3 <small>蜗牛冲刺</small><b>推荐</b></button></div><div class="theme-tabs" role="group" aria-label="预览配色"><button data-theme="light" aria-pressed="true">☀ 白天</button><button data-theme="dark" aria-pressed="false">☾ 夜晚</button></div></div>
+        <div class="preview-frame"><div class="frame-bar"><span><i></i><i></i><i></i></span><b id="previewLabel">冒险岛 V3 · 白天</b><a id="fullscreenPreview" href="preview.html?version=v3&theme=light&scene=conversation" target="_blank" rel="noopener">独立预览 ↗</a></div><iframe id="skinPreview" title="冒险岛 V3 交互皮肤预览" src="preview.html?version=v3&theme=light&scene=conversation"></iframe></div>
+        <div class="preview-bottom"><div class="scene-tabs" role="group" aria-label="预览场景"><button data-scene="conversation" aria-pressed="true">示例对话</button><button data-scene="hero" aria-pressed="false">欢迎界面</button></div><div class="snail-control"><span id="boostStatus" role="status">小蜗牛正在草边散步</span><button id="boostButton">让蜗牛冲一下 ↗</button></div></div>
+        <p class="preview-note">这是皮肤的独立展示窗口。可悬停小怪、切换昼夜，也可输入一条示例消息查看动效；消息只保留在当前预览中。</p>
+      </section>
+      <section class="feature-strip" aria-label="皮肤特点"><article><span>01 / COLOR</span><h3>079 的熟悉配色</h3><p>白天是奶油天空与草地绿，夜晚换成深绿棕、星星与月亮。</p></article><article><span>02 / COMPANION</span><h3>小怪，各司其职</h3><p>蘑菇守着欢迎界面，绿水灵坐上回复气泡，药水藏在新会话路牌里。</p></article><article><span>03 / MOTION</span><h3>点一下，向前冲</h3><p>V3 的蓝蜗牛可以连续点击助力，带着速度线冲刺，再自然回到散步。</p></article></section>
+      <section id="install" class="install-section"><div><p class="eyebrow">BRING IT TO YOUR WORKSPACE</p><h2>装到自己的<br>DeepSeek Harness。</h2><p>包含 V1、V2、V3 三款冒险岛皮肤与原皮肤切换器。<br>展示默认 V3，安装后也可以自由选择。</p><a href="https://github.com/LinZY874/funny/tree/main/tools/dsh-maple-skins" target="_blank" rel="noopener">查看插件源码 ↗</a></div><ol><li><b>下载并解压插件</b><p>将插件包解压为 <code>dsh-maple-skins</code> 文件夹，放在你希望保留的位置。</p></li><li><b>在 DSH 的部署目录中安装</b><p>把下面路径替换为解压后文件夹的绝对路径：</p><div class="command-box"><code id="installCommand">pnpm dsh plugin --profile web add link:/绝对路径/dsh-maple-skins</code><button id="copyCommand" aria-label="复制安装命令">复制</button></div></li><li><b>重启，再选择 V3</b><p>重启 <code>dsh web</code>，进入「设置 → 冒险岛皮肤」，选择「冒险岛 V3（原版用色 · 蜗牛冲刺）」。</p></li></ol></section>
+    </main>
+    <footer><a href="../">funny / 工具收藏</a><span>冒险岛 079 素材署名保留于插件清单</span><a href="about.html">版本与收录说明 ↗</a></footer>
+  </div><script src="showcase.js"></script>
+</body></html>

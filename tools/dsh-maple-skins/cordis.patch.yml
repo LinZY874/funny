@@ -1,0 +1,9 @@
+# dsh-maple-skins bundle patch: inserts the plugin row into the profile that
+# installs it (dsh plugin --profile <name> add link:<this-dir> | <this-dir>).
+# The host half serves the bundled skins + the active-skin state under
+# /api/maple-skins/* and stamps served index documents so a reload starts
+# directly in the active skin. The client half adds the settings section
+# "冒险岛皮肤" — the only UI: pick a skin, it applies.
+- insert:
+    - id: maple-skins
+      name: 'dsh-maple-skins'

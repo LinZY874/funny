@@ -1,0 +1,46 @@
+{
+  "$schema": "https://schemas.linxin666.org/dsh-skin/v2.json",
+  "skinManifestVersion": 2,
+  "id": "v3",
+  "name": "冒险岛 V3（原版用色 · 蜗牛冲刺）",
+  "nameEn": "MapleStory V3",
+  "author": "DeepSeek Harness",
+  "tagline": "079 原版用色回归 + 蓝蜗牛点击冲刺互动",
+  "description": "冒险岛 V3：079 原版用色，蓝蜗牛巡逻可点击助力（位移只进不退、速度永不停顿）。悬停时蜗牛放大 12% 并壳泛金光；点击后从当前位置向前冲刺，带速度线与金光，冲量指数衰减并平滑回归巡逻。连续点击持续冲刺，点击本身不叠加放大，冲刺结束恢复原大小。出手时横向拉伸、纵向压扁并前倾，结束时轻微阻尼摆动，全程无上下位移。无底图，亮奶油天空底色与草地地平线，深色主题为深绿棕夜园。绿蘑菇用于品牌标与空态欢迎，绿水灵位于 AI 气泡，金钱镖飞入用户消息，红蓝药水装饰新会话路牌；悬停可触发对应弹跳。深色空态带星月夜空与流星。",
+  "tags": [
+    "maplestory",
+    "079",
+    "retro",
+    "garden",
+    "pixel",
+    "living-ui"
+  ],
+  "accent": "#d4a017",
+  "order": 3,
+  "version": "3.0.0",
+  "license": "MIT",
+  "attribution": "游戏素材镜像自 mxd079.dvg.cn（冒险岛 079 小册子）；渲染地图与怪物/道具精灵为 079 原版资源。",
+  "preview": {
+    "light": "preview/light.png",
+    "dark": "preview/dark.png"
+  },
+  "requires": {
+    "contracts": [
+      {
+        "apiVersion": "x-org.linxin666.skin-center/v1alpha1",
+        "kind": "SkinHooks",
+        "optional": true
+      }
+    ]
+  },
+  "contributes": {
+    "stylesheet": "skin.css",
+    "patches": "patches.css"
+  },
+  "facets": {
+    "client": {
+      "entry": "hooks.mjs",
+      "apiVersion": "x-org.linxin666.skin-center/v1alpha1"
+    }
+  }
+}
